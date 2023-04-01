@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: url
+      POSTGRES_DB: url_pointer
     ports:
       - "5432:5432"
     restart: unless-stopped
