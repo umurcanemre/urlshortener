@@ -5,6 +5,7 @@ import com.ue.urlshortener.application.hasher.UrlHasher;
 import com.ue.urlshortener.domain.UrlPointer;
 import com.ue.urlshortener.domain.UrlPointerRepository;
 import java.net.URL;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,11 @@ public class UrlPointerService {
         var urlPointer = new UrlPointer(target.toString(), targetIdentifier, owner);
         repository.save(urlPointer);
         return new UrlPointerDto(urlPointer);
+    }
+
+    public Optional<UrlPointerDto> getTarget(String targetIdentifier) {
+        var urlPointer = repository.findByTargetIdentifier(targetIdentifier);
+        return urlPointer.map(UrlPointerDto::new);
     }
 
 }
