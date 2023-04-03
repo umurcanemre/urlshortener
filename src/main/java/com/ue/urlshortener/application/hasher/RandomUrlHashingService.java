@@ -1,7 +1,6 @@
 package com.ue.urlshortener.application.hasher;
 
 import com.ue.urlshortener.domain.UrlPointerRepository;
-import java.net.URL;
 import java.security.SecureRandom;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ public class RandomUrlHashingService implements UrlHasher {
     private UrlPointerRepository urlPointerRepository;
 
     @Override
-    public String hash(URL url) {
+    public String hash(String url) {
         boolean candidateTaken;
         String candidate;
         do {

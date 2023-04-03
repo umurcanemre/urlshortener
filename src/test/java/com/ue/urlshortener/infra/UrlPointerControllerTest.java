@@ -48,7 +48,7 @@ class UrlPointerControllerTest {
     void shouldShortenUrlWithUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
-        when(urlPointerService.shortenUrl(TARGET_URL))
+        when(urlPointerService.shortenUrl(TARGET_STR))
                 .thenReturn(new UrlPointerDto(TARGET_STR, TARGET_PTR));
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
@@ -59,7 +59,7 @@ class UrlPointerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected));
 
-        verify(urlPointerService).shortenUrl(TARGET_URL);
+        verify(urlPointerService).shortenUrl(TARGET_STR);
         verifyNoMoreInteractions(urlPointerService);
     }
 
@@ -68,7 +68,7 @@ class UrlPointerControllerTest {
     void shouldShortenUrlWithoutUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
-        when(urlPointerService.shortenUrl(TARGET_URL))
+        when(urlPointerService.shortenUrl(TARGET_STR))
                 .thenReturn(new UrlPointerDto(TARGET_STR, TARGET_PTR));
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
@@ -79,7 +79,7 @@ class UrlPointerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected));
 
-        verify(urlPointerService).shortenUrl(TARGET_URL);
+        verify(urlPointerService).shortenUrl(TARGET_STR);
         verifyNoMoreInteractions(urlPointerService);
     }
 

@@ -25,7 +25,7 @@ public class UrlPointerController {
 
     @PostMapping
     public ResponseEntity<UrlPointerDto> shortenUrl(@RequestBody UrlShortenRequest req) { // validate request
-        var resp = urlPointerService.shortenUrl(req.targetUrl());
+        var resp = urlPointerService.shortenUrl(req.targetUrl().toString());
         return ok(resp); //Could have been "created" type response, would have to deal with already exists case.
     }
 
