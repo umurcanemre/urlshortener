@@ -31,8 +31,6 @@ class UrlPointerControllerTest {
     private UrlPointerService urlPointerService;
 
     private static final String TARGET_STR = "https://www.youtube.com/watch?v=36IV-FoFLlg";
-    private static final String OWNER = "john.doe@domain.com";
-    private static final String ANON = "ANON";
     private static final String TARGET_PTR = "ABCDE";
     private static final URL TARGET_URL;
 
@@ -50,19 +48,18 @@ class UrlPointerControllerTest {
     void shouldShortenUrlWithUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
-        when(urlPointerService.shortenUrl(OWNER, TARGET_URL))
+        when(urlPointerService.shortenUrl(TARGET_URL))
                 .thenReturn(new UrlPointerDto(TARGET_STR, TARGET_PTR));
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
         this.mockMvc
                 .perform(post("/point")
                         .contentType("application/json")
-                        .header("from", OWNER)
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected));
 
-        verify(urlPointerService).shortenUrl(OWNER, TARGET_URL);
+        verify(urlPointerService).shortenUrl(TARGET_URL);
         verifyNoMoreInteractions(urlPointerService);
     }
 
@@ -71,7 +68,7 @@ class UrlPointerControllerTest {
     void shouldShortenUrlWithoutUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
-        when(urlPointerService.shortenUrl(ANON, TARGET_URL))
+        when(urlPointerService.shortenUrl(TARGET_URL))
                 .thenReturn(new UrlPointerDto(TARGET_STR, TARGET_PTR));
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
@@ -82,7 +79,7 @@ class UrlPointerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected));
 
-        verify(urlPointerService).shortenUrl(ANON, TARGET_URL);
+        verify(urlPointerService).shortenUrl(TARGET_URL);
         verifyNoMoreInteractions(urlPointerService);
     }
 

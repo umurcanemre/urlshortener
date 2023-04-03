@@ -15,14 +15,14 @@ public class UrlPointerService {
     private UrlHasher urlHasher;
     private UrlPointerRepository repository;
 
-    public UrlPointerDto shortenUrl(String owner, URL target) {
+    public UrlPointerDto shortenUrl(URL target) {
         var existingPointerOpt = repository.findByTarget(target.toString());
         if (existingPointerOpt.isPresent()) {
             return new UrlPointerDto(existingPointerOpt.get());
         }
 
         var targetIdentifier = urlHasher.hash(target);
-        var urlPointer = new UrlPointer(target.toString(), targetIdentifier, owner);
+        var urlPointer = new UrlPointer(target.toString(), targetIdentifier);
         repository.save(urlPointer);
         return new UrlPointerDto(urlPointer);
     }
