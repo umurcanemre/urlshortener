@@ -8,8 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -18,6 +20,7 @@ import org.hibernate.annotations.CreationTimestamp;
                 @Index(columnList = "target_identifier"),
                 @Index(columnList = "target")})
 @Data
+@Setter(value = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public final class UrlPointer {
     @GeneratedValue
