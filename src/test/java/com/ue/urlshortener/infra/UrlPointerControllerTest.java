@@ -1,6 +1,7 @@
 package com.ue.urlshortener.infra;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -46,7 +47,7 @@ class UrlPointerControllerTest {
 
     @Test
     @SneakyThrows
-    void shortenUrlWithUser() {
+    void shouldShortenUrlWithUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
         when(urlPointerService.shortenUrl(OWNER, TARGET_URL))
@@ -67,7 +68,7 @@ class UrlPointerControllerTest {
 
     @Test
     @SneakyThrows
-    void shortenUrlWithoutUser() {
+    void shouldShortenUrlWithoutUser() {
         var req = new UrlShortenRequest(TARGET_URL);
 
         when(urlPointerService.shortenUrl(ANON, TARGET_URL))
@@ -86,10 +87,17 @@ class UrlPointerControllerTest {
     }
 
     @Test
-    void getTargetUrl() {
-    }
+    @SneakyThrows
+    void shouldNotShortenMalformedUrl() {
+        var requestJson = String.format("{\"targetUrl\":\"%s\"}", "iMaProPerLyF0rmEDurL");
 
-    @Test
-    void updateUrlTarget() {
+        this.mockMvc
+                .perform(post("/point")
+                        .contentType("application/json")
+                        .content(requestJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Given URL is malformed"));
+
+        verifyNoInteractions(urlPointerService);
     }
 }

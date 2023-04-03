@@ -1,13 +1,14 @@
 URL Shortener 
 
-An Url shortening application that generates a shorter redirect  
+An Url shortening application that generates a shorter redirect
 
 TODO : 
+replace hasher with library
 sonar
 test
  integ tests
  unit test
- contract tests
+ cucumber
  assertj
 secret management
 check help.md before submit
@@ -16,6 +17,9 @@ metrics alerts etc
  short url longer than target url
 logging
 check actuator for the vulnerability 
+
+Pre-prod
+-owner info communicated through request header is not secure enough to be used on a public API. Needs to be either replaced by an Auth provided info (OKTA etc), or update functionality can be suspended until
 
 Post MVP : 
 application admin capabilities
