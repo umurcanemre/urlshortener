@@ -6,6 +6,7 @@ import com.ue.urlshortener.domain.UrlPointer;
 import com.ue.urlshortener.domain.UrlPointerRepository;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +27,9 @@ public class UrlPointerService {
         return new UrlPointerDto(urlPointer);
     }
 
+
+    // Although considering caching post-mvp, ideally instead of on application service layer, it'd be a database cache so hasher service can also utilize cached queries.
+    @Cacheable(value = "targetIdentifiers")
     public Optional<UrlPointerDto> getTarget(String targetIdentifier) {
         var urlPointer = repository.findByTargetIdentifier(targetIdentifier);
         return urlPointer.map(UrlPointerDto::new);

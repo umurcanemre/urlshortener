@@ -22,8 +22,8 @@ class UrlPointerServiceTest {
 
     private UrlPointerRepository repository;
 
-    public static final String TARGET = "https://www.youtube.com/watch?v=iiMFRMoxxEI";
-    public static final String TARGET_ID = "SH0rT";
+    private static final String TARGET = "https://www.youtube.com/watch?v=iiMFRMoxxEI";
+    private static final String TARGET_ID = "SH0rT";
 
     @BeforeEach
     void setup() {

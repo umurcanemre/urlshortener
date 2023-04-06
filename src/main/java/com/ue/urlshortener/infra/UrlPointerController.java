@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/point")
+@RequestMapping("/api/v1/point")
 @AllArgsConstructor
 public class UrlPointerController {
     private UrlPointerService urlPointerService;
