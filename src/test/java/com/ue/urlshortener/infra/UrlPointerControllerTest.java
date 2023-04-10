@@ -53,7 +53,7 @@ class UrlPointerControllerTest {
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
         this.mockMvc
-                .perform(post("/point")
+                .perform(post("/api/v1/point")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isOk())
@@ -73,7 +73,7 @@ class UrlPointerControllerTest {
 
         var expected = String.format("{\"target\":\"%s\",\"targetIdentifier\":\"%s\"}", TARGET_STR, TARGET_PTR);
         this.mockMvc
-                .perform(post("/point")
+                .perform(post("/api/v1/point")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isOk())
@@ -89,7 +89,7 @@ class UrlPointerControllerTest {
         var requestJson = String.format("{\"targetUrl\":\"%s\"}", "iMaProPerLyF0rmEDurL");
 
         this.mockMvc
-                .perform(post("/point")
+                .perform(post("/api/v1/point")
                         .contentType("application/json")
                         .content(requestJson))
                 .andExpect(status().isBadRequest())
