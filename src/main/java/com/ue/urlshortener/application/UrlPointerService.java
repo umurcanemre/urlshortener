@@ -17,7 +17,7 @@ public class UrlPointerService {
     private UrlHasher urlHasher;
     private UrlPointerRepository repository;
 
-    // responsibilities of this method can expand as requirements increase(e.g. black-listing certain pages or certain users, limiting creation per user etc )
+    // responsibilities of this method can expand as requirements increase(e.g. black-listing certain pages or certain users, limiting creation per user or to validate full shortened url is indeed shorter than target url etc )
     // This imperative approach would not comply with open-close principle. To address this issue post-MVP internal or external events/messages can be used to put all these requirements into a choreographed "pipeline"
     public UrlPointerDto shortenUrl(String target) {
         var existingPointerOpt = repository.findByTarget(target);
