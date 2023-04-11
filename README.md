@@ -42,13 +42,13 @@ To run this application, you will need to have the following installed:
 ### DB selection
 
 At the moment, DB records are considered "immutable". This makes many NoSQL DBs a good solution as they offer easier
-horizontal scaling. SQLDB would also work but as the entries grow, scaling through sharding etc may not be as easy
+horizontal scaling. SQLDB would also work but as the entries grow, scaling through sharding etc. may not be as easy
 
-In this implementation I've chose postgres to get some SQL DB exposure.
+In this implementation I've chosen postgres to get some SQL DB exposure.
 
 ### Caching
 
-This is a very suitable product for caching thanks to it's immutable and write once read many times nature
+This is a very suitable product for caching thanks to its immutable and write once read many times nature
 
 For the MVP cache is not really needed. In case of considerable traffic, DB layer caching or Rest caching can be
 configured
@@ -58,7 +58,7 @@ configured
 Depending on the business considerations, ideally before MVP, a CI/CD pipeline would ensure fast and higher quality
 delivery.
 
-Unified format check > build > tests (unit, integration, behaviour, contract etc) > dockerize > deployment (in case of
+Unified format check > build > tests (unit, integration, behaviour, contract etc) > dockerized > deployment (in case of
 heavy traffic canary release model can be considered to have a contained impact in case of newly introduced bugs or
 other issues)
 
@@ -66,7 +66,7 @@ other issues)
 
 As example tests are done to cover "shorten url" functionality. Testing was implemented on slices as Controller layer,
 unit tests on application layer and containerized repository tests. In a prod environment(MVP) some sort of test to
-cover entire application and it's behaviour would be needed (eg. cucumber). To ensure integration with downstream
+cover entire application, and it's behaviour would be needed (e.g. cucumber). To ensure integration with downstream
 services contract testing can be added (post-MVP). On public facing application it's important to have a tracked
 performance testing too to monitor historical performance trends (latency, errors, possible hotspots etc)
 
@@ -86,7 +86,7 @@ to be tracked
 
 ### Security
 
-To improve security in scope of MVP, credentials in properties file needs to be stored in a secure secretmanager. Before
+To improve security in scope of MVP, credentials in properties file needs to be stored in a secure secret manager. Before
 MVP deployment, actuator vulnerability needs to be handled since actuator can expose sensitive endpoints to give
 memory/thread dumps etc.
 
