@@ -2,16 +2,6 @@ URL Shortener
 
 An Url shortening application that generates a shorter redirect
 
-check help.md before submit - pre-submit
-
-check actuator for the vulnerability - pre-submit + pre-release
-
-Post MVP :
-
-application admin capabilities
-
-manage app config & data integrity or trigger compensation commands
-
 # URL Shortener
 
 This is a URL shortener application that allows users to convert long URLs into shorter, more manageable links. The
@@ -46,8 +36,6 @@ To run this application, you will need to have the following installed:
 4. Make a Get request using the targetIdentifier response of earlier request to be directed to target address
 
 ## API Documentation
-
-
 
 ## Considerations
 
@@ -90,3 +78,19 @@ configuration can be implemented to keep the application dynamically configured 
 
 Spring profiles is not utilized in this application to make it easier to run locally. Explicit and clear spring profile
 needs to be set MVP
+
+### Logging and metrics
+
+For logs a logging aggregator and distributed tracing needs to be enabled. Business, performance metrics would also need
+to be tracked
+
+### Security
+
+To improve security in scope of MVP, credentials in properties file needs to be stored in a secure secretmanager. Before
+MVP deployment, actuator vulnerability needs to be handled since actuator can expose sensitive endpoints to give
+memory/thread dumps etc.
+
+### Post-MVP
+
+Setting up a zero-trust application to secure everything that needs to be (e.g. developers do not have write access to
+prod db, ideally not even read access should be needed or granted on need (bug ticket) basis). 
