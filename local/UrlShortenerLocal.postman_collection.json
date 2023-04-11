@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "23a94ee2-2c65-4440-b312-85437ef640ae",
+		"name": "UrlShortenerLocal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5842007"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/point",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "from",
+						"value": "user@domain.com",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"targetUrl\":\"https://www.youtube.com/watch?v=iiMFRMoxxEI\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/point",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"point"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/point/cjZUV",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/point/cjZUV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"point",
+						"cjZUV"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
